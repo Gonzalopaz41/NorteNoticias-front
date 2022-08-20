@@ -1,0 +1,28 @@
+.navbarCss{
+  background-color: #ffffff;
+}
+  
+.imgSize{
+  height: 80px;
+}
+  
+.sections{
+  display: flex;
+  justify-content: flex-end;
+} 
+
+.nav-item{
+  color: grey;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.lista ul{
+  list-style-type: none;
+  background-color: #f2ecec;
+}
+
+.lista ul li{
+  float: left;
+  text-align: center;
+}
