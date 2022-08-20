@@ -1,0 +1,20 @@
+.logoSize{
+  height: 100px;
+}
+  
+.links{
+  text-decoration: none;
+  color: white;
+}
+
+ul li:hover, ion-icon:hover{
+  color: #E58B96;
+  cursor: pointer;
+}
+
+ion-icon{
+  font-size: 25px;
+  color: white;
+  margin: 5px;
+}
+
