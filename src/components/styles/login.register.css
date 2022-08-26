@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  /* body{
+      margin:0;
+      padding:0;
+      font-family:"arial",heletica,sans-serif;
+      font-size:12px;
+      background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+      -webkit-animation: 10s linear 0s normal none infinite animate;
+      -moz-animation: 10s linear 0s normal none infinite animate;
+      -ms-animation: 10s linear 0s normal none infinite animate;
+      -o-animation: 10s linear 0s normal none infinite animate;
+      animation: 10s linear 0s normal none infinite animate;
+   
+  }
+   
+  @-webkit-keyframes animate {
+      from {background-position:0 0;}
+      to {background-position: 500px 0;}
+  }
+   
+  @-moz-keyframes animate {
+      from {background-position:0 0;}
+      to {background-position: 500px 0;}
+  }
+   
+  @-ms-keyframes animate {
+      from {background-position:0 0;}
+      to {background-position: 500px 0;}
+  }
+   
+  @-o-keyframes animate {
+      from {background-position:0 0;}
+      to {background-position: 500px 0;}
+  }
+   
+  @keyframes animate {
+      from {background-position:0 0;}
+      to {background-position: 500px 0;}
+  } */
+  
+  .containerlogin{
+    position: relative;
+    max-width: 430px;
+    width: 100%;
+    background-color:white;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(12, 12, 12, 0.404);
+    overflow: hidden;
+    margin-top: 30px;
+  }
+  
+  .containerlogin .forms{
+    height: 500px;
+    width: 200%;
+  }
+  
+  .containerlogin .forms-register{
+    height: 500px;
+    width: 200%;
+  }
+  
+  .containerlogin .form{
+    width: 50%;
+    padding: 30px;
+    background-color:white;
+    transition: margin-left 0.18s ease;
+  }
+  
+  .title{
+    color: grey;
+    font-size: 27px;
+    font-weight: 600;
+  }
+  
+  .form .input-field{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .input-field input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: #E58B96;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+    /*border-bottom: 2px solid white;*/
+    transition: all 0.2s ease;
+    background-color:#f2ecec;
+    padding-left: 6px;
+  }
+  
+  /* .input-field input:is(:focus, :valid){
+    border-bottom-color: #E58B96;
+  } */
+  
+  /* .checkbox-content input{
+    margin: 0 8px -2px 4px;
+    accent-color: #E58B96;
+  } */
+  
+  .form .text{
+    color:grey;
+    font-size: 14px;
+  }
+  
+  .form a.text{
+    color: #E58B96;
+    text-decoration: none;
+  }
+  .form a:hover{
+    text-decoration: underline;
+  }
+  
+  .button{
+    border: none;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    font-size: 17px;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    background-color: #E58B96;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .form .login-signup{
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  @media (max-width: 320px){
+    .containerlogin{
+      padding: 15px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+    }
+  }
+  .portada{
+    margin-left:none;
+  }
+  @media (max-width: 766px){
+    .portada{
+      
+      display: none;
+      
+    }
+  }
