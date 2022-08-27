@@ -1,5 +1,8 @@
 .navbarCss{
   background-color: #ffffff;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
 }
   
 .imgSize{
@@ -15,6 +18,10 @@
   color: grey;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.lista{
+  padding-top: 110px;
 }
 
 .lista ul{
