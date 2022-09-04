@@ -9,14 +9,13 @@ import Loader from './components/Loader/Loader';
 import Admin from './pages/admin';
 
 function App() {
-  const [isLogin, setIsLogin] = useState();
+  // const [isLogin, setIsLogin] = useState();
   return (
     <>
       <Header/>
       <Routes>
         <Route path='/registrarse' element={<Register/>}/>
         <Route path='/' element={<Login/>}/>
-        <Route path='/' element={<Loader/>}/>
         <Route path='/admin' element={<Admin/>}/>
         
         {/* <Route path='/login' element={<Login/>}/> */}
