@@ -1,35 +1,47 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
-import Register from '../Register/Register';
 import '../styles/login.register.css';
 import Portada from '../../assets/img-registro-login.jpg'
+import Alerta from '../Alertas/Alerta.jsx';
+import  axios  from 'axios';
+import {useNavigate} from 'react-router-dom'
+
 
 function Login() {
+  let navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail]  = useState ('');
+  const [password, setPassword] = useState('');
+  const [alerta, setAlerta] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async e =>{
     e.preventDefault();
-    fetch("http://localhost:80/login",{
-      method: 'POST',
-      body:JSON.stringify(user),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      }
-    })
-    .then(response => response.json())
-    .then(response => console.log(response))
-  }
 
-  const handleChange = ({target}) => {
-    setUser({
-      ...user,
-      [target.name]: target.value
-    })
-  }
+    if([email,password].includes('')){
+      setAlerta({msg:"hay campos vacios", error:true})
+      return;
+    }
+    setAlerta({})
+
+    try {
+      const respuesta = await axios.post('http://localhost:80/login', {email,password})
+      
+      if (respuesta.data.token !== undefined ) {
+          localStorage.setItem("token", respuesta.data.token)
+          setAlerta({msg:"usuario logueado",error:false})
+          navigate('/home' , {replace:true})
+          }   
+                
+    } 
+    catch (error) {
+        setAlerta ({
+          msg:error.response.data.msg,
+          error:true
+        }) 
+    } 
+  }  
+        
+const {msg} = alerta
 
   return (
   <div className="container d-flex my-5">
@@ -39,12 +51,15 @@ function Login() {
         <div className="forms">
           <div className="form login">
             <h1 className="title text-align-center">Acceso</h1>
+              {msg && <Alerta
+                  alerta={alerta}
+                />}
             <form onSubmit={handleSubmit}>
               <div className="input-field">
-                <input type="email" id="emailUsers" name='email' onChange={handleChange} placeholder="Correo electrónico" required/>
+                <input type="email" id="email" name='email' onChange={e => setEmail(e.target.value)} value={email} placeholder="Correo electrónico" />
               </div>
               <div className="input-field">
-                <input type="password" id="passUsers" name='password' onChange={handleChange} className="password" placeholder="Contraseña" required/>
+                <input type="password" id="password" name='password' onChange={e => setPassword(e.target.value)} value={password} className="password" placeholder="Contraseña" />
               </div>
               <div className="checkbox-text d-flex align-items-center justify-content-between mt-3">
                 <div className="checkbox-content d-flex align-items-center justify-content-between">
