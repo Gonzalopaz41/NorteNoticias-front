@@ -1,5 +1,8 @@
 .navbarCss{
   background-color: #ffffff;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
 }
   
 .imgSize{
@@ -17,6 +20,10 @@
   font-weight: bold;
 }
 
+.lista{
+  padding-top: 110px;
+}
+
 .lista ul{
   list-style-type: none;
   background-color: #f2ecec;
@@ -25,4 +32,8 @@
 .lista ul li{
   float: left;
   text-align: center;
+}
+
+.btn-search{
+  background-color: #E58B96;
 }
