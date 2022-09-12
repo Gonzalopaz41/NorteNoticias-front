@@ -30,6 +30,8 @@ function Login() {
           localStorage.setItem("token", respuesta.data.token)
           setAlerta({msg:"usuario logueado",error:false})
           navigate('/home' , {replace:true})
+          // axios.post('http://localhost:80/login',
+          // headers:{'authorization':respuesta.data.token})
           }   
                 
     } 
