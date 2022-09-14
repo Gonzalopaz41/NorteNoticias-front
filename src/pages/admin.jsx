@@ -1,25 +1,37 @@
+import { data } from 'autoprefixer';
 import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom';
 import Loader from '../components/Loader/Loader'
 
 function Admin() {
-  const [listNews, setListNews] = useState();
-  const [listUsers, setListUsers] = useState();
+  const [listNews, setListNews] = useState([]);
+  const [listUsers, setListUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const token = localStorage.getItem('token')
   const getData = () =>{
-    fetch("http://localhost:80/admin")
+    fetch('http://localhost:80/admin', {
+    method: 'POST',
+    headers: {
+    'acces_token': token,
+    'Content-type': 'application/json; charset=UTF-8'
+    }})
     .then(response => response.json())
     .then(response => {
-      setListNews(response);
       setIsLoading(true);
+      setListNews(response);
       console.log(response)
     })
   }
 
   const getUsers = () =>{
-    fetch("http://localhost:80/users")
+    fetch('http://localhost:80/register', {
+    method: 'POST',
+    headers: {
+    'acces_token': token,
+    'Content-type': 'application/json; charset=UTF-8'
+    }})
     .then(response => response.json())
     .then(response => {
       setListUsers(response);
@@ -30,7 +42,8 @@ function Admin() {
   useEffect(() => {
     getData()
     getUsers()
-  }, [])
+    console.log(listUsers)
+  },[isLoading])
 
   return (
     <div className='container p-3'>
@@ -51,11 +64,11 @@ function Admin() {
               </thead>
               <tbody>
                 {
-                  listNews.map((news)=>{
+                  listNews?.map((news)=>{
                     <tr>
-                      <td>{news.title}</td>
-                      <td>{news.author}</td>
-                      <td>{news.date}</td>
+                      <td>hola</td>
+                      <td></td>
+                      <td>{news?.title}</td>
                       <td>
                         <button>Publicar</button>
                         <button>Modificar</button>
@@ -89,7 +102,7 @@ function Admin() {
               </thead>
               <tbody>
                 {
-                  listUsers.map((prod, i)=>{
+                  listUsers?.map((prod, i)=>{
                     <tr key={i}>
                       <td>{prod.name}</td>
                       <td>{prod.surname}</td>

@@ -6,7 +6,6 @@ import Footer from './components/Footer/Footer';
 import Register from './components/Register/Register';
 import Login from './pages/login'
 import Admin from './pages/admin'
-
 function App() {
   const [isLogin] = useState(localStorage.getItem('token') || false);
   return (
