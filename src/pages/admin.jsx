@@ -4,8 +4,8 @@ import {useNavigate} from 'react-router-dom';
 import Loader from '../components/Loader/Loader'
 
 function Admin() {
-  const [listNews, setListNews] = useState();
-  const [listUsers, setListUsers] = useState();
+  const [listNews, setListNews] = useState([]);
+  const [listUsers, setListUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -19,14 +19,14 @@ function Admin() {
     }})
     .then(response => response.json())
     .then(response => {
-      setListNews(response);
       setIsLoading(true);
+      setListNews(response);
       console.log(response)
     })
   }
 
   const getUsers = () =>{
-    fetch('http://localhost:80/admin', {
+    fetch('http://localhost:80/register', {
     method: 'POST',
     headers: {
     'acces_token': token,
@@ -42,8 +42,8 @@ function Admin() {
   useEffect(() => {
     getData()
     getUsers()
-    
-  },[])
+    console.log(listUsers)
+  },[isLoading])
 
   return (
     <div className='container p-3'>
@@ -68,7 +68,7 @@ function Admin() {
                     <tr>
                       <td>hola</td>
                       <td></td>
-                      <td>{news?.date}</td>
+                      <td>{news?.title}</td>
                       <td>
                         <button>Publicar</button>
                         <button>Modificar</button>
