@@ -1,4 +1,4 @@
-import { data } from 'autoprefixer';
+
 import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom';
 import Loader from '../components/Loader/Loader'
@@ -10,20 +10,22 @@ function Admin() {
   const navigate = useNavigate();
 
   const token = localStorage.getItem('token')
+
   const getData = () =>{
-    fetch('http://localhost:80/admin', {
-    method: 'POST',
-    headers: {
-    'acces_token': token,
-    'Content-type': 'application/json; charset=UTF-8'
-    }})
-    .then(response => response.json())
-    .then(response => {
-      setIsLoading(true);
-      setListNews(response);
-      console.log(response)
-    })
-  }
+        fetch('http://localhost:80/admin/news', {
+        method: 'POST',
+        headers: {
+        'acces_token': token,
+        'Content-type': 'application/json; charset=UTF-8'
+        }})
+        .then(response => response.json())
+        .then(response => {
+          setIsLoading(true);
+          setListNews(response);
+          //console.log(response)
+          
+        })
+       }
 
   const getUsers = () =>{
     fetch('http://localhost:80/register', {
@@ -42,10 +44,11 @@ function Admin() {
   useEffect(() => {
     getData()
     getUsers()
-    console.log(listUsers)
-  },[isLoading])
+    //console.log(listUsers)
+  },[])
 
   return (
+    
     <div className='container p-3'>
       <h1>Listado de noticias</h1>
       {
@@ -63,21 +66,39 @@ function Admin() {
                 </tr>
               </thead>
               <tbody>
-                {
-                  listNews?.map((news)=>{
-                    <tr>
+              {
+                listNews?.map(news=>(
+                  <tr key={news._id}>
+                    <td>{news.title}</td>
+                    
+                    <td>{news.category}</td>
+                    <td>{news.description}</td>
+                    <td>
+                      <button>Publicar</button>
+                      <button>Modificar</button>
+                      <button>Eliminar</button>
+                    </td>
+                  </tr>
+                  ))
+              }
+              </tbody>
+                {/* {
+                  listNews.map((news,_id)=>{
+                    <tbody>
+                    <tr key={_id}>
+                      <td>{console.log(news)}</td>
                       <td>hola</td>
-                      <td></td>
-                      <td>{news?.title}</td>
+                      <td>{news.img}</td>
                       <td>
                         <button>Publicar</button>
                         <button>Modificar</button>
                         <button>Eliminar</button>
                       </td>
                     </tr>
+                    </tbody>
                   })
-                }
-              </tbody>
+                } */}
+              
             </table>
           </div>
           <button className='btn btn-primary'>Formulario noticias</button>
@@ -102,13 +123,26 @@ function Admin() {
               </thead>
               <tbody>
                 {
-                  listUsers?.map((prod, i)=>{
-                    <tr key={i}>
-                      <td>{prod.name}</td>
-                      <td>{prod.surname}</td>
-                      <td>{prod.email}</td>
+                   listUsers?.map(users=>(
+                    <tr key={users._id}>
+                      <td>{users.name}</td>
+                      
+                      <td>{users.surname}</td>
+                      <td>{users.email}</td>
+                      <td>
+                        <button>Publicar</button>
+                        <button>Modificar</button>
+                        <button>Eliminar</button>
+                      </td>
                     </tr>
-                  })
+                    ))
+                  // listUsers?.map((prod, i)=>{
+                  //   <tr key={i}>
+                  //     <td>{prod.name}</td>
+                  //     <td>{prod.surname}</td>
+                  //     <td>{prod.email}</td>
+                  //   </tr>
+                  // })
                 }
               </tbody>
             </table>
