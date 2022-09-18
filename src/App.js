@@ -6,6 +6,9 @@ import Footer from './components/Footer/Footer';
 import Register from './components/Register/Register';
 import Login from './pages/login'
 import Admin from './pages/admin'
+import ManageUsers from './pages/manageUsersAdmin'
+import ManageNews from './pages/manageNewsAdmin'
+
 function App() {
   const [isLogin] = useState(localStorage.getItem('token') || false);
   return (
@@ -16,6 +19,8 @@ function App() {
         <Route path='/' element={isLogin ? <Home/> : <Login/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/admin' element={<Admin/>}/>
+        <Route path='/manageUsers' element={<ManageUsers/>}/>
+        <Route path='/manageNews' element={<ManageNews/>}/>
       </Routes> 
       <Footer/> 
     </>
