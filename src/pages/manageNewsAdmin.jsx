@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import Loader from '../components/Loader/Loader'
+import {useNavigate} from 'react-router-dom';
 
 function ManageNewsAdmin() {
   const [listNews, setListNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const token = localStorage.getItem('token')
 
@@ -81,7 +83,7 @@ function ManageNewsAdmin() {
               
             </table>
           </div>
-          <button className='btn btn-primary'>Formulario noticias</button>
+          <button className='btn btn-primary' onClick={()=> navigate('/form')}>Formulario noticias</button>
         </div>
         :
         <Loader/>
