@@ -10,7 +10,7 @@ function ManageNewsAdmin() {
   const token = localStorage.getItem('token')
 
   const getData = () =>{
-    fetch('http://localhost:80/admin/news', {
+    fetch('http://localhost:80/admin/get', {
     method: 'POST',
     headers: {
     'acces_token': token,
@@ -20,8 +20,7 @@ function ManageNewsAdmin() {
     .then(response => {
       setIsLoading(true);
       setListNews(response);
-      //console.log(response)
-      
+      console.log(response)
     })
    }
 
