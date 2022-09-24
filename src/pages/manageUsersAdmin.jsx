@@ -8,7 +8,7 @@ function ManageUsersAdmin() {
   const token = localStorage.getItem('token')
 
   const getUsers = () =>{
-    fetch('http://localhost:80/register', {
+    fetch('http://localhost:80/register/user', {
     method: 'POST',
     headers: {
     'acces_token': token,
