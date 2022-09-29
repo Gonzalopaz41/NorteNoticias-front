@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Loader from '../components/Loader/Loader'
 import {useNavigate} from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 function ManageNewsAdmin() {
   const [listNews, setListNews] = useState([]);
@@ -24,9 +25,35 @@ function ManageNewsAdmin() {
     })
    }
 
-   const clickPaciente = (id) =>{
+  const clickPaciente = (id) =>{
     localStorage.setItem("id", id)
-    navigate('/editar/' +id)
+  }
+
+  const deleteNews = () =>{
+    Swal.fire({
+      title: '¿Estas seguro de eliminar esta noticia?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:80/admin/eliminar/${idNews}`, {
+          method: 'DELETE',
+          headers: {
+          'acces_token': token,
+          'Content-type': 'application/json; charset=UTF-8'
+        }})
+        Swal.fire(
+          'Eliminada',
+          'La noticia ha sido modificada.',
+          'success'
+        )
+        window.location.reload()
+      }
+    })
   }
 
    useEffect(() => {
@@ -58,8 +85,14 @@ function ManageNewsAdmin() {
                     <td>{news.category}</td>
                     <td>{news.introduction}</td>
                     <td>
-                      <button className='px-1 bg-success' onClick={()=>clickPaciente(news._id)}><ion-icon name="pencil"></ion-icon></button>
-                      <button className='px-1 bg-danger border-rounded'><ion-icon name="trash"></ion-icon></button>
+                      <button className='px-1 bg-success' onClick={()=>{
+                          clickPaciente(news._id)
+                          navigate('/editar/' +news._id)
+                        }}><ion-icon name="pencil"></ion-icon></button>
+                      <button className='px-1 bg-danger border-rounded' onClick={()=>{
+                          clickPaciente(news._id);
+                          deleteNews();
+                      }}><ion-icon name="trash"></ion-icon></button>
                     </td>
                   </tr>
                   ))
