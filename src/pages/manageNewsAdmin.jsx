@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import Loader from '../components/Loader/Loader'
 import {useNavigate} from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 function ManageNewsAdmin() {
   const [listNews, setListNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('token');
+  const idNews = localStorage.getItem('id')
 
   const getData = () =>{
     fetch('http://localhost:80/admin/get', {
@@ -20,27 +22,55 @@ function ManageNewsAdmin() {
     .then(response => {
       setIsLoading(true);
       setListNews(response);
-      console.log(response)
     })
    }
 
+  const clickPaciente = (id) =>{
+    localStorage.setItem("id", id)
+  }
+
+  const deleteNews = () =>{
+    Swal.fire({
+      title: '¿Estas seguro de eliminar esta noticia?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:80/admin/eliminar/${idNews}`, {
+          method: 'DELETE',
+          headers: {
+          'acces_token': token,
+          'Content-type': 'application/json; charset=UTF-8'
+        }})
+        Swal.fire(
+          'Eliminada',
+          'La noticia ha sido modificada.',
+          'success'
+        )
+        window.location.reload()
+      }
+    })
+  }
+
    useEffect(() => {
     getData()
-    // getUsers()
-    //console.log(listUsers)
   },[])
 
   return (
     <div className='container p-3'>
-      <h1>Listado de noticias</h1>
+      <h1 className='py-2 fw-bold'>Listado de noticias</h1>
       {
         isLoading
         ?
         <div className='row'>
           <div>
-            <table className="table">
+            <table className="table table-hover table-bordered align-middle">
               <thead>
-                <tr>
+                <tr className='align-bottom'>
                   <th scope="col">Título</th>
                   <th scope="col">Categoría</th>
                   <th scope="col">Introducción</th>
@@ -55,34 +85,22 @@ function ManageNewsAdmin() {
                     <td>{news.category}</td>
                     <td>{news.introduction}</td>
                     <td>
-                      <button>Publicar</button>
-                      <button>Modificar</button>
-                      <button>Eliminar</button>
+                      <button className='px-1 bg-success' onClick={()=>{
+                          clickPaciente(news._id)
+                          navigate('/editar/' +news._id)
+                        }}><ion-icon name="pencil"></ion-icon></button>
+                      <button className='px-1 bg-danger border-rounded' onClick={()=>{
+                          clickPaciente(news._id);
+                          deleteNews();
+                      }}><ion-icon name="trash"></ion-icon></button>
                     </td>
                   </tr>
                   ))
               }
-              </tbody>
-                {/* {
-                  listNews.map((news,_id)=>{
-                    <tbody>
-                    <tr key={_id}>
-                      <td>{console.log(news)}</td>
-                      <td>hola</td>
-                      <td>{news.img}</td>
-                      <td>
-                        <button>Publicar</button>
-                        <button>Modificar</button>
-                        <button>Eliminar</button>
-                      </td>
-                    </tr>
-                    </tbody>
-                  })
-                } */}
-              
+              </tbody>              
             </table>
           </div>
-          <button className='btn btn-primary' onClick={()=> navigate('/form')}>Formulario noticias</button>
+          <button className='btn btn-primary w-25' onClick={()=> navigate('/form')}>Agregar una noticia</button>
         </div>
         :
         <Loader/>

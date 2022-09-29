@@ -9,6 +9,7 @@ import Admin from './pages/admin'
 import ManageUsers from './pages/manageUsersAdmin'
 import ManageNews from './pages/manageNewsAdmin'
 import FormAdmin from './pages/formAdmin'
+import Edit from './pages/edit';
 
 function App() {
   const [isLogin] = useState(localStorage.getItem('token') || false);
@@ -25,6 +26,8 @@ function App() {
         <Route path='/manageUsers' element={<ManageUsers/>}/>
         <Route path='/manageNews' element={<ManageNews/>}/>
         <Route path='/form' element={<FormAdmin/>}/>
+        {/* <Route path='/editar/:id' element={props=>(<Edit {...props}/>)}/> */}
+        <Route path='/editar/:id' element={<Edit/>}/>
       </Routes> 
       <Footer/> 
     </>

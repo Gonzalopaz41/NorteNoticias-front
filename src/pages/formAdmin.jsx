@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function FormAdmin() {
   const [news, setNews] = useState({
@@ -31,6 +32,11 @@ function FormAdmin() {
       setNews(response);
       navigate('/manageNews');
       console.log(response)})
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Noticia publicada'
+    })
   }
   
   const handleChange = ({target}) => {
