@@ -25,7 +25,7 @@ function Login() {
 
     try {
       const respuesta = await axios.post('http://localhost:80/login', {email,password})
-      
+      console.log(respuesta)
       if (respuesta.data.token !== undefined ) {
           localStorage.setItem("token", respuesta.data.token)
           setAlerta({msg:"usuario logueado",error:false})
@@ -33,6 +33,10 @@ function Login() {
           // axios.post('http://localhost:80/login',
           // headers:{'authorization':respuesta.data.token})
           }   
+      if (respuesta.data.rollAdmin === true){
+        localStorage.setItem("roll", respuesta.data.rollAdmin)
+      }
+          
                 
     } 
     catch (error) {
