@@ -5,8 +5,8 @@ function Admin() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <button className='btn btn-danger' onClick={()=> navigate('/manageUsers')}>Gestionar Usuarios</button>
+    <div className="text-center  bg-black flex ">
+      <button className='btn btn-danger flex justify-end' onClick={()=> navigate('/manageUsers')}>Gestionar Usuarios</button>
       <button className='btn btn-danger' onClick={()=> navigate('/manageNews')}>Gestionar Noticias</button>
     </div>
   )

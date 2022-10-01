@@ -1,6 +1,6 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
-import {Link} from "react-router-dom"
+import '../Header/Navbar/Navbar.css'
 
 const Salir = () => {
 
@@ -9,11 +9,12 @@ const navigate = useNavigate()
     e.preventDefault()
     localStorage.clear()
     navigate('/' , {replace:true})
+    window.location.reload()
   }
   return (
-    <button type='submit' onClick={salir}>
-     <a href="/">Salir</a> 
-      </button>
+    <button className=" nav-link" type='submit'  onClick={salir}>
+       Cerrar Sesion
+    </button>
   )
 }
 

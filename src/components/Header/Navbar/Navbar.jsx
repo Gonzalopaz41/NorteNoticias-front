@@ -2,7 +2,8 @@ import React, {useState,useEffect} from "react";
 import Logo from '../../../assets/logo_nn.png'
 import "./Navbar.css"
 import {Link} from "react-router-dom"
-import AdminDropdown from "../../admin-dropdown/Admin-dropdown";
+import TypesExample from "../../admin-dropdown/Admin-dropdown";
+import Salir from "../../Salir/Salir";
 
 
 function Navbar() {
@@ -10,6 +11,7 @@ function Navbar() {
   const [ newsAux, setNewsAux ] = useState();
   const [ isLoading, setIsLoading ] = useState(false);
   const [administrador, setAdministrador] = useState(false);
+  const [isLogin, setIsLogin] = useState(false)
 
 
   const getNews = () =>{
@@ -40,9 +42,11 @@ function Navbar() {
   useEffect(()=>{
     const roll =localStorage.getItem('roll')
     setAdministrador(roll)
+    const login = localStorage.getItem('token')
+    setIsLogin(login)
     
-  },[setAdministrador])
-  console.log(setAdministrador)
+  },[])
+  console.log(administrador)
   return (
     <>
     <nav className="navbar navbar-expand-lg navbarCss">
@@ -64,9 +68,12 @@ function Navbar() {
               <Link to={"/registrarse"} className="text nav-link">Registrarse</Link>
             </li>
             <>
-            {administrador ? <AdminDropdown />  : "" }
+            {administrador ? <TypesExample />  : "" }
             </>
-            
+            <li className="nav-item">
+            {isLogin ? < Salir/>  : "" }
+
+            </li>
           </ul>
         </div>
         <div className="search p-2">

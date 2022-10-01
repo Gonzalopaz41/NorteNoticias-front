@@ -36,6 +36,7 @@ function Login() {
       if (respuesta.data.rollAdmin === true){
         localStorage.setItem("roll", respuesta.data.rollAdmin)
       }
+      window.location.reload()
           
                 
     } 
