@@ -1,12 +1,18 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import Logo from '../../../assets/logo_nn.png'
 import "./Navbar.css"
 import {Link} from "react-router-dom"
+import TypesExample from "../../admin-dropdown/Admin-dropdown";
+import Salir from "../../Salir/Salir";
+
 
 function Navbar() {
   const [ news, setNews ] = useState();
   const [ newsAux, setNewsAux ] = useState();
   const [ isLoading, setIsLoading ] = useState(false);
+  const [administrador, setAdministrador] = useState(false);
+  const [isLogin, setIsLogin] = useState(false)
+
 
   const getNews = () =>{
     fetch("http://localhost:80/news")
@@ -29,8 +35,18 @@ function Navbar() {
     } else {
       getNews();
     }
-  };
 
+    
+  };
+  
+  useEffect(()=>{
+    const roll =localStorage.getItem('roll')
+    setAdministrador(roll)
+    const login = localStorage.getItem('token')
+    setIsLogin(login)
+    
+  },[])
+  console.log(administrador)
   return (
     <>
     <nav className="navbar navbar-expand-lg navbarCss">
@@ -42,7 +58,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav sections">
             <li className="nav-item">
-              <a className="nav-link" href="/#">Home</a>
+              <a className="nav-link" href="/">Home</a>
             </li>
             <li className="nav-item">
               <Link to={"/"} className="text nav-link">Ingresar</Link>
@@ -50,6 +66,13 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link to={"/registrarse"} className="text nav-link">Registrarse</Link>
+            </li>
+            <>
+            {administrador ? <TypesExample />  : "" }
+            </>
+            <li className="nav-item">
+            {isLogin ? < Salir/>  : "" }
+
             </li>
           </ul>
         </div>

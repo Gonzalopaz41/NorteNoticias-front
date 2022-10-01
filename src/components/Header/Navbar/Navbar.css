@@ -37,3 +37,15 @@
 .btn-search{
   background-color: #E58B96;
 }
+
+.toggle{
+  background-color: #f87171;
+}
+.toggle :hover {
+  background-color: #dc2626;
+}
+.link{
+  color: #dc2626;
+}
+  
+  

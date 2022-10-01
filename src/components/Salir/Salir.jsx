@@ -1,16 +1,20 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
+import '../Header/Navbar/Navbar.css'
 
 const Salir = () => {
 
-    let navigate = useNavigate();
+const navigate = useNavigate()
   const salir = e => {
     e.preventDefault()
     localStorage.clear()
-    navigate('/')   
+    navigate('/' , {replace:true})
+    window.location.reload()
   }
   return (
-    <button type='submit' onClick={salir}>salir</button>
+    <button className=" nav-link" type='submit'  onClick={salir}>
+       Cerrar Sesion
+    </button>
   )
 }
 

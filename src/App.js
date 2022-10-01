@@ -13,6 +13,8 @@ import Edit from './pages/edit';
 
 function App() {
   const [isLogin] = useState(localStorage.getItem('token') || false);
+  const [isAdmin] = useState(localStorage.getItem('roll'));
+  
   return (
     <>
       <Header/>
@@ -20,7 +22,7 @@ function App() {
         <Route path='/registrarse' element={<Register/>}/>
         <Route path='/' element={isLogin ? <Home/> : <Login/>}/>
         <Route path='/home' element={<Home/>}/>
-        <Route path='/admin' element={<Admin/>}/>
+        <Route path='/admin' element={isAdmin ? <Admin/> : <Login />}/>
         <Route path='/manageUsers' element={<ManageUsers/>}/>
         <Route path='/manageNews' element={<ManageNews/>}/>
         <Route path='/form' element={<FormAdmin/>}/>
