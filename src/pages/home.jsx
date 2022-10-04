@@ -1,5 +1,5 @@
 import React from 'react'
-import UncontrolledExample from '../components/Carousel/Carousel';
+import Carrousel from '../components/Carousel/Carousel';
 
 
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
   return (
     
     <>
-    <UncontrolledExample/> 
+    <Carrousel/> 
     </>
   )
   
