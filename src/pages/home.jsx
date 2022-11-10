@@ -1,5 +1,10 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import Carrousel from '../components/Carousel/Carousel';
+
+
+
+
 
 
 const Home = () => {
@@ -8,8 +13,9 @@ const Home = () => {
   return (
     
     <>
-    <Carrousel/> 
+    <Carrousel/>
     </>
+    
   )
   
 }
