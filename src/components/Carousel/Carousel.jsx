@@ -1,72 +1,54 @@
-import { useState, useEffect } from 'react';
 
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import Loader from '../Loader/Loader';
+import Img1 from '../../assets/en-reunin-tolosa-paz-mesa-trabajo-junto-emilio-persico-.webp'
+import Img2 from '../../assets/mundial-qatar-2022-y-nos-fuimos-en-como-participar-concurso-lanzo-bizarrap-te-lleva-alentar-seleccion.webp'
+import Img3 from '../../assets/conoce-cuales-son-autos-mas-baratos-para-comprar-noviembre.webp'
+
+import Carousel from 'react-bootstrap/Carousel';
 
 function Carrousel() {
-  const [useCarrousel, setNewsCarrousel] = useState({})
-  const [isLoading, setIsLoading] = useState(false);
-  const token = localStorage.getItem('token');
+  return (
+    <Carousel className='w-2/3 my-5 m-auto'>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={Img1}
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h3>Les quitarán los planes sociales a los beneficiarios que compraron dólares</h3>
+          <p>Así lo anunció la ministra Victoria Tolosa Paz.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={Img2}
+          alt="Second slide"
+        />
 
-  
+        <Carousel.Caption>
+          <h3>Mundial de Qatar 2022: “Y nos fuimos en una”, cómo participar del concurso que lanzó Bizarrap y que te lleva a alentar a la Selección</h3>
+          <p>El famoso productor invita a reversionar uno de sus éxitos.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={Img3}
+          alt="Third slide"
+        />
 
+        <Carousel.Caption>
+          <h3>Cuáles son los autos más baratos para comprar en noviembre</h3>
+          <p>
+          Solamente quedan nueve modelos por debajo de los $ 4 millones.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+  );
+}
 
-  const carrouselNews = () => {
-    fetch('http://localhost:80/admin/get', {
-    method: 'POST',
-    headers: {
-    'acces_token': token,
-    'Content-type': 'application/json; charset=UTF-8'
-    }})
-    .then(response => response.json())
-    .then(response => {
-      setIsLoading(true)
-      setNewsCarrousel(response);
-    })
-  }
-
-  useEffect(() => {
-    carrouselNews()
-  },[])
-  console.log(useCarrousel)
-
-    return (
-    <>
-    {isLoading ? 
-      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      {
-        useCarrousel?.map(carrousel=>(
-          <div key={carrousel._id} class="carousel-inner">
-            <div class="carousel-item active">
-              <img src={carrousel.img} class="d-block w-100" alt="..."/>
-              <div class="carousel-caption d-none d-md-block">
-                <h5>{carrousel.title} </h5>
-                <p>Some representative placeholder content for the first slide.</p>
-              </div>
-            </div>
-          </div>
-        ))
-      
-      }
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-    :
-    <Loader/>  
-    }
-   </>
-    );
-  }
-  
-  export default Carrousel;
+export default Carrousel;
