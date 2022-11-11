@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import Carrousel from '../components/Carousel/Carousel';
-
+import CardsHome from '../components/Card/Card';
 
 
 
@@ -14,6 +14,7 @@ const Home = () => {
     
     <>
     <Carrousel/>
+    <CardsHome/>
     </>
     
   )
