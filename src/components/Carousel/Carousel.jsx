@@ -9,7 +9,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 function Carrousel() {
   return (
-    <Carousel className='w-2/3 my-5 m-auto'>
+    <Carousel className='w-2/3 pt-52 m-auto'>
       <Carousel.Item>
         <img
           className="d-block w-100"
