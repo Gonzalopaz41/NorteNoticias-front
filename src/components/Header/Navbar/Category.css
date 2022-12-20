@@ -1,0 +1,19 @@
+.nav-item{
+    color: grey;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .lista{
+    margin-top: 100px;
+    position: fixed; 
+     z-index: 100; 
+     width: 100%;
+    
+    
+  }
+  .seccion{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+  }  

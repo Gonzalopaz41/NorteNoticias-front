@@ -4,6 +4,8 @@ import "./Navbar.css"
 import {Link} from "react-router-dom"
 import TypesExample from "../../admin-dropdown/Admin-dropdown";
 import Salir from "../../Salir/Salir";
+import {useNavigate} from 'react-router-dom'
+
 
 
 function Navbar() {
@@ -13,31 +15,33 @@ function Navbar() {
   const [administrador, setAdministrador] = useState(false);
   const [isLogin, setIsLogin] = useState(false)
 
+  let navigate = useNavigate();
 
-  const getNews = () =>{
-    fetch("http://localhost:80/news")
-    .then(response => response.json())
-    .then(response => {
-      setNews(response);
-      setNewsAux(response);
-      setIsLoading(true);
-    })
-  }
 
-  const handleChange = (e) => {
-    if (e.length >= 3) {
-      const newsFiltradas = news.filter((news1) => {
-        if (news1.name.toLowerCase().indexOf(e.toLowerCase()) !== -1) {
-          return news1;
-        }
-      })
-      setNewsAux(newsFiltradas);
-    } else {
-      getNews();
-    }
+  // const getNews = () =>{
+  //   fetch("http://localhost:80/news")
+  //   .then(response => response.json())
+  //   .then(response => {
+  //     setNews(response);
+  //     setNewsAux(response);
+  //     setIsLoading(true);
+  //   })
+  // }
+
+  // const handleChange = (e) => {
+  //   if (e.length >= 3) {
+  //     const newsFiltradas = news.filter((news1) => {
+  //       if (news1.name.toLowerCase().indexOf(e.toLowerCase()) !== -1) {
+  //         return news1;
+  //       }
+  //     })
+  //     setNewsAux(newsFiltradas);
+  //   } else {
+  //     getNews();
+  //   }
 
     
-  };
+  // };
   
   useEffect(()=>{
     const roll =localStorage.getItem('roll')
@@ -49,6 +53,7 @@ function Navbar() {
   console.log(administrador)
   return (
     <>
+    <section className="seccion">
     <nav className="navbar navbar-expand-lg navbarCss">
       <div className="container-fluid">
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,36 +81,34 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="search p-2">
+        {/* <div className="search p-2">
           <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Búsqueda" aria-label="Search"/>
             <button className="btn btn-search" type="submit" onChange={(e) => handleChange(e.target.value)}><ion-icon name="search"></ion-icon></button>
           </form>
-        </div>
+        </div> */}
       </div>
     </nav>
-    <div className="lista d-none d-lg-block">
+    {/* <div className="lista d-none d-lg-block">
       <ul className="d-flex justify-content-center">
         <li className="nav-item m-2">
-          <a className="nav-link" href="/#">Ultimo momento</a>
+          <a className="nav-link" href="/#">Inicio</a>
         </li>
         <li className="nav-item m-2">
-          <a className="nav-link" href="/#">Actualidad</a>
+          <a className="nav-link" href="#Economia" >Economia</a>
         </li>
         <li className="nav-item m-2">
-          <a className="nav-link" href="/#">Política</a>
+          <a className="nav-link" href="#Deportes">Deportes</a>
         </li>
         <li className="nav-item m-2">
-          <a className="nav-link" href="/#">Deportes</a>
+          <a className="nav-link" href="#Politica">Politica</a>
         </li>
         <li className="nav-item m-2">
-          <a className="nav-link" href="/#">Sociedad</a>
-        </li>
-        <li className="nav-item m-2">
-          <a className="nav-link" href="/#">Espectáculos</a>
+          <a className="nav-link" href="#Sociedad">Sociedad</a>
         </li>
       </ul>
-    </div>
+    </div> */}
+    </section>
   </>
   );
 }
