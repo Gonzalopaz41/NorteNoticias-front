@@ -1,4 +1,6 @@
 import React, {useState,useEffect} from "react";
+import Dropdown from 'react-bootstrap/Dropdown';
+
 import Logo from '../../../assets/logo_nn.png'
 import "./Navbar.css"
 import {Link} from "react-router-dom"
@@ -17,31 +19,6 @@ function Navbar() {
 
   let navigate = useNavigate();
 
-
-  // const getNews = () =>{
-  //   fetch("http://localhost:80/news")
-  //   .then(response => response.json())
-  //   .then(response => {
-  //     setNews(response);
-  //     setNewsAux(response);
-  //     setIsLoading(true);
-  //   })
-  // }
-
-  // const handleChange = (e) => {
-  //   if (e.length >= 3) {
-  //     const newsFiltradas = news.filter((news1) => {
-  //       if (news1.name.toLowerCase().indexOf(e.toLowerCase()) !== -1) {
-  //         return news1;
-  //       }
-  //     })
-  //     setNewsAux(newsFiltradas);
-  //   } else {
-  //     getNews();
-  //   }
-
-    
-  // };
   
   useEffect(()=>{
     const roll =localStorage.getItem('roll')
@@ -72,6 +49,24 @@ function Navbar() {
             <li className="nav-item">
               <Link to={"/registrarse"} className="text nav-link">Registrarse</Link>
             </li>
+            <li>
+              { isLogin ?
+            <Dropdown>
+              <Dropdown.Toggle className='bg-red-300 hover:bg-red-400 border-0 mx-1' variant="success" id="dropdown-basic">
+                Categorias
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu className=''>
+                <Dropdown.Item className='' href="/#">Inicio</Dropdown.Item>
+                <Dropdown.Item className='' href="#Economia">Economia</Dropdown.Item>
+                <Dropdown.Item className='' href="#Deportes">Deportes</Dropdown.Item>
+                <Dropdown.Item className='' href="#Sociedad">Sociedad</Dropdown.Item>
+                <Dropdown.Item className='' href="#Politica">Politica</Dropdown.Item>
+              </Dropdown.Menu>
+          </Dropdown> 
+          : ""
+          }
+            </li>
             <>
             {administrador ? <TypesExample />  : "" }
             </>
@@ -81,34 +76,10 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        {/* <div className="search p-2">
-          <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search" placeholder="Búsqueda" aria-label="Search"/>
-            <button className="btn btn-search" type="submit" onChange={(e) => handleChange(e.target.value)}><ion-icon name="search"></ion-icon></button>
-          </form>
-        </div> */}
       </div>
+    
     </nav>
-    {/* <div className="lista d-none d-lg-block">
-      <ul className="d-flex justify-content-center">
-        <li className="nav-item m-2">
-          <a className="nav-link" href="/#">Inicio</a>
-        </li>
-        <li className="nav-item m-2">
-          <a className="nav-link" href="#Economia" >Economia</a>
-        </li>
-        <li className="nav-item m-2">
-          <a className="nav-link" href="#Deportes">Deportes</a>
-        </li>
-        <li className="nav-item m-2">
-          <a className="nav-link" href="#Politica">Politica</a>
-        </li>
-        <li className="nav-item m-2">
-          <a className="nav-link" href="#Sociedad">Sociedad</a>
-        </li>
-      </ul>
-    </div> */}
-    </section>
+  </section>
   </>
   );
 }

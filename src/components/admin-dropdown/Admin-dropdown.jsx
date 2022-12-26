@@ -1,14 +1,11 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import {useNavigate} from 'react-router-dom'
-import {Link} from "react-router-dom"
+
 
 
 function TypesExample() {
   const navigate = useNavigate()
 
-  /*<Link to={"/admin"} className="">
-      <Button className="bg-red-800" variant="danger">Administrador</Button>
-      </Link>*/
   return (
     <>
     <Dropdown>
@@ -17,7 +14,7 @@ function TypesExample() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu className=''>
-        <Dropdown.Item href="/manageUsers">Gestionar Usuarios</Dropdown.Item>
+        <Dropdown.Item className='' href="/manageUsers">Gestionar Usuarios</Dropdown.Item>
         <Dropdown.Item href="/manageNews">Gestionar Noticias</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>  

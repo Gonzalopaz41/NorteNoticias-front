@@ -1,5 +1,4 @@
 import React from "react";
-// import {Link} from 'react-router-dom'
 import Logo from "../../assets/logo_nn.png";
 import "../Footer/Footer.css"
 
@@ -40,9 +39,9 @@ function Footer() {
         </div>
       </div>
 
-        <div class="container">
-          <div class="row gy-3">
-              <p class="mb-0 d-flex justify-content-center text-white py-2">
+        <div className="container">
+          <div className="row gy-3">
+              <p className="mb-0 d-flex justify-content-center text-white py-2">
                 ©2022 Norte Noticias. Todos los derechos reservados.</p>
           </div>
         </div>

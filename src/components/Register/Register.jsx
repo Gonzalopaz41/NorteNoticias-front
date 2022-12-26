@@ -40,7 +40,7 @@ function Register() {
     setAlerta({})
 
     try {
-      const respuesta = await axios.post('http://localhost:80/register', {name,surname,email,password})
+      const respuesta = await axios.post(`${process.env.REACT_APP_REGISTER}`, {name,surname,email,password})
       console.log(respuesta)
       setAlerta({msg:"Usuario creado correctamente",
       error:false

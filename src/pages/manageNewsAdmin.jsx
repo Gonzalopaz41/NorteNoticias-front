@@ -10,9 +10,9 @@ function ManageNewsAdmin() {
 
   const token = localStorage.getItem('token');
   const idNews = localStorage.getItem('id')
-
+ 
   const getData = () =>{
-    fetch('http://localhost:80/admin/get', {
+    fetch(`${process.env.REACT_APP_NEWS}`, {
     method: 'POST',
     headers: {
     'acces_token': token,
@@ -40,7 +40,7 @@ function ManageNewsAdmin() {
       confirmButtonText: 'Si, eliminar'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:80/admin/eliminar/${idNews}`, {
+        fetch(`${process.env.REACT_APP_DELETE_NEWS}${idNews}`, {
           method: 'DELETE',
           headers: {
           'acces_token': token,
