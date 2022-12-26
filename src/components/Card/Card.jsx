@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Loader from '../Loader/Loader'
+import {useNavigate} from 'react-router-dom';
 
 function CardsHome() {
     const [NewsHome, setNewsHome] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     const token = localStorage.getItem('token')
+    const navigate = useNavigate();
 
   const getNews = () =>{
     fetch('http://localhost:80/admin/get', {
@@ -21,6 +23,10 @@ function CardsHome() {
       setNewsHome(response);
       setIsLoading(true);
     })
+  }
+
+  const clickNews = (id) =>{
+    localStorage.setItem("id", id)
   }
 
   let newsEconomia = NewsHome.filter(categoria => categoria.category.includes("Economia"))
@@ -54,7 +60,10 @@ function CardsHome() {
                       <Card.Text>
                         {news.introduction}
                       </Card.Text>
-                      <Button className='mt-3' variant="primary">Noticia completa</Button>
+                      <button className='mt-3 btn btn-primary' onClick={()=>{
+                          clickNews(news._id)
+                          navigate('/news/' +news._id)
+                        }}>Noticia completa</button>
                     </Card.Body>
                   </Card>
                 ))
@@ -83,7 +92,10 @@ function CardsHome() {
                     <Card.Text>
                       {news.introduction}
                     </Card.Text>
-                    <Button className='mt-3' variant="primary">Noticia completa</Button>
+                    <button className='mt-3 btn btn-primary' onClick={()=>{
+                          clickNews(news._id)
+                          navigate('/news/' +news._id)
+                        }}>Noticia completa</button>
                   </Card.Body>
                 </Card>
               ))
@@ -112,7 +124,10 @@ function CardsHome() {
                       <Card.Text>
                         {news.introduction}
                       </Card.Text>
-                      <Button className='mt-3' variant="primary">Noticia completa</Button>
+                      <button className='mt-3 btn btn-primary' onClick={()=>{
+                          clickNews(news._id)
+                          navigate('/news/' +news._id)
+                        }}>Noticia completa</button>
                     </Card.Body>
                   </Card>
                 ))
@@ -141,7 +156,10 @@ function CardsHome() {
                       <Card.Text>
                         {news.introduction}
                       </Card.Text>
-                      <Button className='mt-3' variant="primary">Noticia completa</Button>
+                      <button className='mt-3 btn btn-primary' onClick={()=>{
+                          clickNews(news._id)
+                          navigate('/news/' +news._id)
+                        }}>Noticia completa</button>
                     </Card.Body>
                   </Card>
                 ))
