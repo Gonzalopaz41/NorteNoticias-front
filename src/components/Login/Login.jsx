@@ -24,19 +24,17 @@ function Login() {
     setAlerta({})
 
     try {
-      const respuesta = await axios.post('http://localhost:80/login', {email,password})
+      const respuesta = await axios.post(`${process.env.REACT_APP_LOGIN}`, {email,password})
       console.log(respuesta)
       if (respuesta.data.token !== undefined ) {
           localStorage.setItem("token", respuesta.data.token)
           setAlerta({msg:"usuario logueado",error:false})
           navigate('/home' , {replace:true})
-          // axios.post('http://localhost:80/login',
-          // headers:{'authorization':respuesta.data.token})
           }   
       if (respuesta.data.rollAdmin === true){
         localStorage.setItem("roll", respuesta.data.rollAdmin)
       }
-      window.location.reload()
+      window.location.reload() 
           
                 
     } 
@@ -51,6 +49,8 @@ function Login() {
 const {msg} = alerta
 
   return (
+    <>
+ 
   <div className="container d-flex my-5">
     <img className='container-fluid portada col-8' src={Portada} alt="portada" />
     <div className="container-fluid col-lg-4 col-md-6 m-3">
@@ -89,6 +89,8 @@ const {msg} = alerta
       </div>
     </div>
   </div>
+  
+  </>
   )
 }
 

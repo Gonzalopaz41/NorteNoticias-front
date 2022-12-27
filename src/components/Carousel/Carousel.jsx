@@ -1,6 +1,3 @@
-
-import { useState, useEffect } from 'react';
-import Loader from '../Loader/Loader';
 import Img1 from '../../assets/en-reunin-tolosa-paz-mesa-trabajo-junto-emilio-persico-.webp'
 import Img2 from '../../assets/mundial-qatar-2022-y-nos-fuimos-en-como-participar-concurso-lanzo-bizarrap-te-lleva-alentar-seleccion.webp'
 import Img3 from '../../assets/conoce-cuales-son-autos-mas-baratos-para-comprar-noviembre.webp'
@@ -9,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 function Carrousel() {
   return (
-    <Carousel className='w-2/3 pt-52 m-auto'>
+    <Carousel className='w-2/3 py-5 m-auto'>
       <Carousel.Item>
         <img
           className="d-block w-100"

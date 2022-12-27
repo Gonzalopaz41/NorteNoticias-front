@@ -8,7 +8,7 @@ function ManageUsersAdmin() {
   const token = localStorage.getItem('token')
 
   const getUsers = () =>{
-    fetch('http://localhost:80/register/user', {
+    fetch(`${process.env.REACT_APP_USERS}`, {
     method: 'POST',
     headers: {
     'acces_token': token,
@@ -22,9 +22,9 @@ function ManageUsersAdmin() {
   }
 
   useEffect(() => {
-    // getData()
+   
     getUsers()
-    //console.log(listUsers)
+    
   },[])
 
 
@@ -59,13 +59,7 @@ function ManageUsersAdmin() {
                       </td>
                     </tr>
                     ))
-                  // listUsers?.map((prod, i)=>{
-                  //   <tr key={i}>
-                  //     <td>{prod.name}</td>
-                  //     <td>{prod.surname}</td>
-                  //     <td>{prod.email}</td>
-                  //   </tr>
-                  // })
+                  
                 }
               </tbody>
             </table>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Button from 'react-bootstrap/Button';
+
 import Card from 'react-bootstrap/Card';
 import Loader from '../Loader/Loader'
 import {useNavigate} from 'react-router-dom';
@@ -12,7 +12,7 @@ function CardsHome() {
     const navigate = useNavigate();
 
   const getNews = () =>{
-    fetch('http://localhost:80/admin/get', {
+    fetch(`${process.env.REACT_APP_NEWS}`, {
     method: 'POST',
     headers: {
     'acces_token': token,
@@ -37,9 +37,7 @@ function CardsHome() {
   
 
   useEffect(() => {
-    // getData()
     getNews()
-    //console.log(listUsers)
   },[])
 
   return (

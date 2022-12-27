@@ -18,7 +18,7 @@ function Edit() {
   const navigate = useNavigate();
 
   const getData = () =>{
-    fetch('http://localhost:80/admin/get', {
+    fetch(`${process.env.REACT_APP_NEWS}`, {
     method: 'POST',
     headers: {
     'acces_token': token,
@@ -53,7 +53,7 @@ function Edit() {
       confirmButtonText: 'Si, modificar'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:80/admin/editar/${idNews}`,{
+        fetch(`${process.env.REACT_APP_EDIT_NEWS}${idNews}`,{
           method: 'PATCH',
           body: JSON.stringify({
             category: news.category,
@@ -91,7 +91,6 @@ function Edit() {
 
   useEffect(() => {
     getData()
-    // updateData()
   },[])
 
   return (

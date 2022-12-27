@@ -10,7 +10,6 @@ import ManageUsers from './pages/manageUsersAdmin'
 import ManageNews from './pages/manageNewsAdmin'
 import FormAdmin from './pages/formAdmin'
 import Edit from './pages/edit';
-import Categoria from './pages/Category';
 import News from './pages/news';
 
 function App() {
@@ -25,12 +24,12 @@ function App() {
         <Route path='/' element={isLogin ? <Home/> : <Login/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/admin' element={isAdmin ? <Admin/> : <Login />}/>
-        <Route path='/manageUsers' element={<ManageUsers/>}/>
-        <Route path='/manageNews' element={<ManageNews/>}/>
-        <Route path='/form' element={<FormAdmin/>}/>
+        <Route path='/manageUsers' element={isAdmin ? <ManageUsers/> : <Login/>}/>
+        <Route path='/manageNews' element={isAdmin ? <ManageNews/> : <Login/>}/>
+        <Route path='/form' element={isAdmin ? <FormAdmin/> : <Login/>}/>
         {/* <Route path='/editar/:id' element={props=>(<Edit {...props}/>)}/> */}
-        <Route path='/editar/:id' element={<Edit/>}/>
-        <Route path='/categoria' element={<Categoria/>} />
+        <Route path='/editar/:id' element={isAdmin ? <Edit/> : <Login/>}/>
+        
         <Route path='/news/:id' element={<News/>}/>
       </Routes> 
       <Footer/> 

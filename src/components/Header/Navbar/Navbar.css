@@ -1,8 +1,8 @@
 .navbarCss{
   background-color: #ffffff;
   width: 100%;
-  /* position: fixed;
-  z-index: 100; */
+  /* position: sticky;
+  top:80px; */
 }
   
 .imgSize{
@@ -54,7 +54,8 @@
 }
   
 .seccion{
-  position: fixed;
-  z-index: 100;
+  position: sticky;
+  top: 10px;
+  z-index: 100; 
   width: 100%;
 }

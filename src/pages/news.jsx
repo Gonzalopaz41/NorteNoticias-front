@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import '../components/styles/news.css';
-import {useNavigate} from 'react-router-dom';
+//import {useNavigate} from 'react-router-dom';
 import '../components/Card/Card'
-import Card from 'react-bootstrap/Card';
-import Loader from '../components/Loader/Loader'
 import Img1 from '../assets/publicidad.jpg'
 
 function News() {
@@ -16,14 +14,14 @@ function News() {
     date:"",
     author:""
   });
-  const [AllNews, setAllNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+   const [AllNews, setAllNews] = useState([]);
+   const [isLoading, setIsLoading] = useState(false);
 
   const token = localStorage.getItem('token')
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const getData = () =>{
-    fetch('http://localhost:80/admin/get', {
+    fetch(`${process.env.REACT_APP_NEWS}`, {
     method: 'POST',
     headers: {
     'acces_token': token,
@@ -45,7 +43,7 @@ function News() {
    }
 
    const getNews = () =>{
-    fetch('http://localhost:80/admin/get', {
+    fetch(`${process.env.REACT_APP_NEWS}`, {
     method: 'POST',
     headers: {
     'acces_token': token,
@@ -93,30 +91,7 @@ function News() {
         <div className='m-9'>
               <hr />
               <h2 className='m-3'>Más noticias</h2>
-              {/* <div className='grid gap-4  sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 my-5 mx-4 items-center md:m-auto'>
-              {
-                 isLoading
-                ?
-                AllNews?.map(item=>(
-                  <Card className='shadow-lg'  style={{ width: '18rem' }} key={item._id}>
-                    <Card.Img variant="top" src={item.img}/>
-                    <Card.Body>
-                      <h5 className='mb-2'>{item.category}</h5>
-                      <Card.Title>{item.title}</Card.Title>
-                      <button className='mt-3 btn btn-primary' onClick={()=>{
-                          clickNews(item._id)
-                          navigate('/news/' +item._id)
-                        }}>Noticia completa</button>
-                    </Card.Body>
-                  </Card>
-                ))
-                  
-
-                :
-                <Loader/>
-                  
-              }
-              </div> */}
+              
             </div>
       </div>     
     </>

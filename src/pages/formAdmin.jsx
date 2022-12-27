@@ -19,7 +19,7 @@ function FormAdmin() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:80/admin/post",{
+    fetch(`${process.env.REACT_APP_POST_NEWS}`,{
       method: 'POST',
       body:JSON.stringify(news),
       headers: {
